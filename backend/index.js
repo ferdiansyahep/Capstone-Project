@@ -8,6 +8,7 @@ import { notFound } from './middlewares/errorMiddleware.js';
 import adminRoutes from './routes/adminRoutes.js';
 import guruRoutes from './routes/guruRoutes.js';
 import siswaRoutes from './routes/siswaRoute.js';
+import kelasRoutes from './routes/kelasRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 app.use('/api/admin', adminRoutes);
 app.use('/api/guru', guruRoutes);
 app.use('/api/siswa', siswaRoutes);
+app.use('/api/kelas', kelasRoutes);
 
 app.use(notFound)
 app.listen(process.env.APP_PORT, () => {
