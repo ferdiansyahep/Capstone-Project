@@ -4,8 +4,9 @@ import db from "../config/db.js";
 const { DataTypes } = Sequelize;
 
 const Admin = db.define("admin", {
-    uuid: {
+    id: {
         type: DataTypes.UUID,
+        primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         validate: {
