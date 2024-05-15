@@ -1,11 +1,13 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
+import Kelas from "./kelasModel.js";
 
 const { DataTypes } = Sequelize;
 
 const Siswa = db.define("siswa", {
-    uuid: {
+    id: {
         type: DataTypes.UUID,
+        primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         validate: {
@@ -72,5 +74,10 @@ const Siswa = db.define("siswa", {
 }, {
     freezeTableName: true,
 })
+
+// Menambahkan relasi antara Siswa dan Kelas
+Siswa.belongsTo(Kelas, { foreignKey: 'kelas', targetKey: 'nama_kelas' });
+Kelas.hasMany(Siswa, { foreignKey: 'kelas', targetKey: 'nama_kelas' });
+
 
 export default Siswa;
